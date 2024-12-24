@@ -6,11 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class UsersController(DataContext context) : ControllerBase
+public class UsersController(DataContext context) : BaseApiController
 {
-    [HttpGet]
+    [HttpGet] // To get to this controller(Page) we need to go to "localhost:5016/api/users" 
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     {
         var users = await context.Users.ToListAsync();
