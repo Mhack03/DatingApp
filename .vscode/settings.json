@@ -1,1 +1,8 @@
-{}
+{
+    "folder-color.pathColors": [
+        {
+            "folderPath": "DatingApp\\API\\Properties\\",
+            "color": "foldercolorizer.color_00cc00"
+        }
+    ]
+}
