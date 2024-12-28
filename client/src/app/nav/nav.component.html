@@ -7,12 +7,15 @@
             <a routerLink="/members" routerLinkActive="active" class="nav-link active" >Matches</a>
           </li>
           <li class="nav-item">
-            <a routerLink="lists" routerLinkActive="active" class="nav-link" >Lists</a>
+            <a routerLink="/lists" routerLinkActive="active" class="nav-link" >Lists</a>
           </li>
           <li class="nav-item">
-            <a routerLink="messages" routerLinkActive="active" class="nav-link" >Messages</a>
+            <a routerLink="/messages" routerLinkActive="active" class="nav-link" >Messages</a>
           </li>
         }
+        <li class="nav-item">
+          <a routerLink="/errors" routerLinkActive="active" class="nav-link" >Errors</a>
+        </li>
       </ul>
 
       @if (accountService.currentUser()) {
@@ -40,6 +43,7 @@
           [(ngModel)]="model.username"
           class="form-control me-2"
           placeholder="Username"
+          autocomplete="off"
         />
         <input
           name="password"
@@ -47,6 +51,7 @@
           class="form-control me-2"
           placeholder="Password"
           type="password"
+          autocomplete="off"
         />
         <button class="btn btn-secondary" type="submit">Login</button>
       </form>

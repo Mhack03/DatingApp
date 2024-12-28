@@ -1,0 +1,14 @@
+<h1>500 - Internal Server Error</h1>
+@if(error){
+    <h4 class="text-danger">Error: {{error.message}}</h4>
+    <p>what to do next?</p>
+    <ol>
+        <li>Open dev tools and check the failing network request in the network tab</li>
+        <li>Examine the URL of the failing request</li>
+        <li>Reproduce the error in postman - if you can reproduce the error then client side is not to the problem</li>
+    </ol>
+    <p class="font-weight-bold">Following the stack trace - check the first 2 lines this tells you exactly which line of code caused the problem!</p>
+    <code class="mt-5" style="background-color: whitesmoke;">
+        {{error.details}}
+    </code>
+}
