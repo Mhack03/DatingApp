@@ -1,27 +1,24 @@
-using System;
-using API.Data;
-using API.Entities;
+using API.DTOs;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-public class UsersController(DataContext context) : BaseApiController
+[Authorize]
+public class UsersController(IUserRepository userRepository) : BaseApiController
 {
-    [AllowAnonymous]
     [HttpGet] // To get to this controller(Page) we need to go to "localhost:5016/api/users" 
-    public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
     {
-        var users = await context.Users.ToListAsync();
-        return users;
+        var users = await userRepository.GetMembersAsync();
+        return Ok(users);
     }
     
-    [Authorize]
-    [HttpGet("{id:int}")] // /api/users/2
-    public async Task<ActionResult<AppUser>> GetUsers(int id)
+    [HttpGet("{username}")] // /api/users/2
+    public async Task<ActionResult<MemberDto>> GetUsers(string username)
     {
-        var user = await context.Users.FindAsync(id);
+        var user = await userRepository.GetMemberAsync(username);
 
         if (user == null) return NotFound();
         
